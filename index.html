@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Energy Formulator">
+    <meta name="description" content="Create the world's healthiest plant-based energy drink with perfect taste and optimal nutrition">
+    <title>Plant-Based Energy Drink Formulator</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌱 Plant-Based Energy Drink Formulator</h1>
+            <p class="subtitle">Create the world's healthiest energy drink with perfect taste and optimal nutrition</p>
+        </header>
+
+        <nav class="tabs">
+            <button class="tab-btn active" data-tab="calculator">Recipe Calculator</button>
+            <button class="tab-btn" data-tab="database">Ingredient Database</button>
+            <button class="tab-btn" data-tab="nutrition">Nutrition Analyzer</button>
+            <button class="tab-btn" data-tab="research">Research & Guide</button>
+        </nav>
+
+        <!-- Recipe Formulation Calculator -->
+        <section id="calculator" class="tab-content active">
+            <h2>Recipe Formulation Calculator</h2>
+            <div class="calculator-grid">
+                <div class="ingredient-inputs">
+                    <h3>Add Ingredients</h3>
+                    <div class="input-group">
+                        <select id="ingredient-select" class="form-control">
+                            <option value="">Select an ingredient...</option>
+                        </select>
+                        <input type="number" id="ingredient-amount" class="form-control" placeholder="Amount (ml/g)" step="0.1" min="0">
+                        <button id="add-ingredient-btn" class="btn btn-primary">Add to Recipe</button>
+                    </div>
+                    <div id="recipe-list" class="recipe-list"></div>
+                    <div class="recipe-actions">
+                        <button id="clear-recipe-btn" class="btn btn-secondary">Clear Recipe</button>
+                        <button id="save-recipe-btn" class="btn btn-success">Save Recipe</button>
+                    </div>
+                </div>
+                <div class="recipe-summary">
+                    <h3>Recipe Summary</h3>
+                    <div id="recipe-stats" class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-label">Total Volume</div>
+                            <div class="stat-value" id="total-volume">0 ml</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">Total Cost</div>
+                            <div class="stat-value" id="total-cost">$0.00</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">Calories</div>
+                            <div class="stat-value" id="total-calories">0 kcal</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">Caffeine</div>
+                            <div class="stat-value" id="total-caffeine">0 mg</div>
+                        </div>
+                    </div>
+                    <div class="nutrition-preview">
+                        <h4>Nutrition Preview</h4>
+                        <div id="nutrition-preview-content"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ingredient Database -->
+        <section id="database" class="tab-content">
+            <h2>Ingredient Database</h2>
+            <div class="search-bar">
+                <input type="text" id="ingredient-search" class="form-control" placeholder="Search ingredients...">
+                <select id="category-filter" class="form-control">
+                    <option value="">All Categories</option>
+                    <option value="energy">Energy Sources</option>
+                    <option value="flavor">Flavor Enhancers</option>
+                    <option value="electrolyte">Electrolytes</option>
+                    <option value="antioxidant">Antioxidants</option>
+                    <option value="vitamin">Vitamins</option>
+                    <option value="sweetener">Natural Sweeteners</option>
+                </select>
+            </div>
+            <div id="ingredient-grid" class="ingredient-grid"></div>
+        </section>
+
+        <!-- Nutrition Analyzer -->
+        <section id="nutrition" class="tab-content">
+            <h2>Nutrition Analyzer</h2>
+            <div class="analyzer-container">
+                <div class="nutrition-input">
+                    <h3>Enter Recipe Nutrition Data</h3>
+                    <div class="nutrition-form">
+                        <div class="form-row">
+                            <label>Volume (ml):</label>
+                            <input type="number" id="analyzer-volume" class="form-control" value="250" min="0">
+                        </div>
+                        <div class="form-row">
+                            <label>Calories:</label>
+                            <input type="number" id="analyzer-calories" class="form-control" value="0" min="0">
+                        </div>
+                        <div class="form-row">
+                            <label>Caffeine (mg):</label>
+                            <input type="number" id="analyzer-caffeine" class="form-control" value="0" min="0">
+                        </div>
+                        <div class="form-row">
+                            <label>Sugar (g):</label>
+                            <input type="number" id="analyzer-sugar" class="form-control" value="0" min="0">
+                        </div>
+                        <div class="form-row">
+                            <label>Protein (g):</label>
+                            <input type="number" id="analyzer-protein" class="form-control" value="0" min="0">
+                        </div>
+                        <button id="analyze-btn" class="btn btn-primary">Analyze Nutrition</button>
+                    </div>
+                </div>
+                <div class="nutrition-results">
+                    <h3>Analysis Results</h3>
+                    <div id="nutrition-analysis" class="analysis-content"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Research & Documentation -->
+        <section id="research" class="tab-content">
+            <h2>Research & Comprehensive Guide</h2>
+            <div class="research-content">
+                <div class="research-section">
+                    <h3>🌿 Plant-Based Energy Sources</h3>
+                    <div class="research-card">
+                        <h4>Green Tea Extract</h4>
+                        <p><strong>Benefits:</strong> Natural caffeine (20-50mg per serving), rich in L-theanine for sustained energy without crashes, high in antioxidants (EGCG).</p>
+                        <p><strong>Usage:</strong> 50-100ml per 250ml drink. Provides smooth, sustained energy release.</p>
+                    </div>
+                    <div class="research-card">
+                        <h4>Yerba Mate</h4>
+                        <p><strong>Benefits:</strong> Contains caffeine, theobromine, and theophylline for multi-layered energy. Rich in vitamins A, C, E and minerals.</p>
+                        <p><strong>Usage:</strong> 30-60ml per 250ml drink. Provides balanced, jitter-free energy.</p>
+                    </div>
+                    <div class="research-card">
+                        <h4>Guarana</h4>
+                        <p><strong>Benefits:</strong> Natural caffeine source (2-4x stronger than coffee beans), contains tannins and saponins for sustained release.</p>
+                        <p><strong>Usage:</strong> 5-15ml extract per 250ml drink. Provides long-lasting energy boost.</p>
+                    </div>
+                    <div class="research-card">
+                        <h4>Ginseng</h4>
+                        <p><strong>Benefits:</strong> Adaptogenic herb that helps body adapt to stress, improves mental clarity and physical endurance.</p>
+                        <p><strong>Usage:</strong> 10-20ml extract per 250ml drink. Enhances overall vitality.</p>
+                    </div>
+                </div>
+
+                <div class="research-section">
+                    <h3>🍋 Natural Flavor Enhancers</h3>
+                    <div class="research-card">
+                        <h4>Citrus Extracts</h4>
+                        <p><strong>Lemon, Lime, Grapefruit:</strong> Natural citric acid provides refreshing taste, vitamin C boost, and helps with absorption of other nutrients.</p>
+                        <p><strong>Usage:</strong> 20-40ml per 250ml drink for bright, energizing flavor.</p>
+                    </div>
+                    <div class="research-card">
+                        <h4>Ginger</h4>
+                        <p><strong>Benefits:</strong> Anti-inflammatory, aids digestion, provides warming, spicy flavor that complements energy drinks.</p>
+                        <p><strong>Usage:</strong> 5-15ml extract per 250ml drink.</p>
+                    </div>
+                    <div class="research-card">
+                        <h4>Mint</h4>
+                        <p><strong>Benefits:</strong> Refreshing, cooling effect, aids digestion, natural breath freshener.</p>
+                        <p><strong>Usage:</strong> 10-20ml extract per 250ml drink.</p>
+                    </div>
+                </div>
+
+                <div class="research-section">
+                    <h3>⚡ Electrolytes & Hydration</h3>
+                    <div class="research-card">
+                        <h4>Coconut Water</h4>
+                        <p><strong>Benefits:</strong> Natural source of potassium, sodium, magnesium. Low in calories, high in hydration.</p>
+                        <p><strong>Usage:</strong> 50-100ml per 250ml drink as base or additive.</p>
+                    </div>
+                    <div class="research-card">
+                        <h4>Sea Salt</h4>
+                        <p><strong>Benefits:</strong> Provides sodium and trace minerals. Enhances flavor and maintains electrolyte balance.</p>
+                        <p><strong>Usage:</strong> Pinch (0.5-1g) per 250ml drink.</p>
+                    </div>
+                    <div class="research-card">
+                        <h4>Magnesium Citrate</h4>
+                        <p><strong>Benefits:</strong> Essential for energy production, muscle function, and prevents cramping.</p>
+                        <p><strong>Usage:</strong> 100-200mg per 250ml drink.</p>
+                    </div>
+                </div>
+
+                <div class="research-section">
+                    <h3>🍯 Natural Sweeteners</h3>
+                    <div class="research-card">
+                        <h4>Stevia</h4>
+                        <p><strong>Benefits:</strong> Zero calories, 200-300x sweeter than sugar, no glycemic impact, plant-based.</p>
+                        <p><strong>Usage:</strong> 0.1-0.3g per 250ml drink (adjust to taste).</p>
+                    </div>
+                    <div class="research-card">
+                        <h4>Monk Fruit Extract</h4>
+                        <p><strong>Benefits:</strong> Zero calories, natural, no aftertaste, contains antioxidants.</p>
+                        <p><strong>Usage:</strong> 0.2-0.5g per 250ml drink.</p>
+                    </div>
+                    <div class="research-card">
+                        <h4>Agave Nectar</h4>
+                        <p><strong>Benefits:</strong> Low glycemic index, natural, provides subtle sweetness and smooth texture.</p>
+                        <p><strong>Usage:</strong> 5-15ml per 250ml drink (moderate use for lower sugar).</p>
+                    </div>
+                </div>
+
+                <div class="research-section">
+                    <h3>💊 Vitamins & Antioxidants</h3>
+                    <div class="research-card">
+                        <h4>Vitamin B Complex</h4>
+                        <p><strong>Benefits:</strong> Essential for energy metabolism. B12, B6, B3 (Niacin) convert food to energy.</p>
+                        <p><strong>Usage:</strong> 50-100% RDA per 250ml drink.</p>
+                    </div>
+                    <div class="research-card">
+                        <h4>Vitamin C</h4>
+                        <p><strong>Benefits:</strong> Antioxidant, supports immune system, enhances iron absorption, natural from citrus.</p>
+                        <p><strong>Usage:</strong> 50-200mg per 250ml drink.</p>
+                    </div>
+                    <div class="research-card">
+                        <h4>Coenzyme Q10</h4>
+                        <p><strong>Benefits:</strong> Cellular energy production, powerful antioxidant, supports heart health.</p>
+                        <p><strong>Usage:</strong> 30-100mg per 250ml drink.</p>
+                    </div>
+                </div>
+
+                <div class="research-section">
+                    <h3>📦 Packaging: Paper Cup with Aluminum Foil</h3>
+                    <div class="research-card">
+                        <h4>Why This Combination Works</h4>
+                        <ul>
+                            <li><strong>Paper Cup:</strong> Eco-friendly, biodegradable, sustainable, provides insulation</li>
+                            <li><strong>Aluminum Foil Lining:</strong> Excellent thermal barrier, keeps drinks cold longer, prevents condensation, maintains temperature</li>
+                            <li><strong>Benefits:</strong> Better than plastic (environmental), better than plain paper (thermal), maintains drink quality</li>
+                        </ul>
+                        <p><strong>Best Practices:</strong></p>
+                        <ul>
+                            <li>Use food-grade aluminum foil lining</li>
+                            <li>Ensure proper seal to prevent leaks</li>
+                            <li>Consider double-wall construction for maximum insulation</li>
+                            <li>Use BPA-free materials throughout</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="research-section">
+                    <h3>🎯 Optimal Recipe Formulation Strategy</h3>
+                    <div class="research-card">
+                        <h4>Creating the Perfect Balance</h4>
+                        <ol>
+                            <li><strong>Base (60-70%):</strong> Coconut water or filtered water with electrolytes</li>
+                            <li><strong>Energy Blend (15-20%):</strong> Combination of green tea, yerba mate, guarana (aim for 80-150mg total caffeine)</li>
+                            <li><strong>Flavor (10-15%):</strong> Citrus extracts, ginger, mint for refreshing taste</li>
+                            <li><strong>Sweetener (2-5%):</strong> Stevia or monk fruit for zero-calorie sweetness</li>
+                            <li><strong>Enhancements (3-5%):</strong> Vitamins, antioxidants, adaptogens</li>
+                        </ol>
+                        <p><strong>Target Nutrition per 250ml:</strong></p>
+                        <ul>
+                            <li>Calories: 10-30 (low calorie)</li>
+                            <li>Caffeine: 80-150mg (moderate, sustained release)</li>
+                            <li>Sugar: 0-5g (minimal, from natural sources only)</li>
+                            <li>Vitamins: 50-100% RDA of B-complex, C</li>
+                            <li>Electrolytes: Balanced sodium, potassium, magnesium</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="research-section">
+                    <h3>🔬 Taste Optimization Tips</h3>
+                    <div class="research-card">
+                        <h4>Maintaining Great Taste</h4>
+                        <ul>
+                            <li><strong>Balance Acidity:</strong> Use citric acid from natural sources (lemon, lime) - aim for pH 3.5-4.0</li>
+                            <li><strong>Mask Bitterness:</strong> Natural sweeteners help mask bitter notes from caffeine sources</li>
+                            <li><strong>Layer Flavors:</strong> Combine multiple flavor notes (citrus + mint + ginger) for complexity</li>
+                            <li><strong>Cold Extraction:</strong> Cold-brew energy sources to reduce bitterness</li>
+                            <li><strong>Natural Carbonation:</strong> Consider light carbonation for refreshing mouthfeel</li>
+                            <li><strong>Consistency:</strong> Use natural thickeners like xanthan gum (minimal amounts) for smooth texture</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="research-section">
+                    <h3>✅ Health Benefits Summary</h3>
+                    <div class="research-card">
+                        <h4>Why This is the World's Healthiest Energy Drink</h4>
+                        <ul>
+                            <li>✅ 100% plant-based, no artificial ingredients</li>
+                            <li>✅ Natural caffeine sources with sustained release (no crash)</li>
+                            <li>✅ Rich in antioxidants (EGCG, CoQ10, vitamins)</li>
+                            <li>✅ Low calorie (10-30 per serving)</li>
+                            <li>✅ Zero or minimal sugar</li>
+                            <li>✅ Complete electrolyte profile</li>
+                            <li>✅ Adaptogenic herbs for stress support</li>
+                            <li>✅ Essential vitamins for energy metabolism</li>
+                            <li>✅ Natural flavors, no synthetic additives</li>
+                            <li>✅ Eco-friendly packaging</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

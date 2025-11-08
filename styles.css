@@ -1,0 +1,639 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #2d8659;
+    --secondary-color: #4a9d7a;
+    --accent-color: #6bb896;
+    --text-color: #2c3e50;
+    --bg-color: #f8f9fa;
+    --card-bg: #ffffff;
+    --border-color: #e0e0e0;
+    --success-color: #28a745;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+    --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: var(--text-color);
+    line-height: 1.6;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    background: var(--card-bg);
+    border-radius: 20px;
+    box-shadow: var(--shadow-hover);
+    overflow: hidden;
+}
+
+header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    padding: 40px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.subtitle {
+    font-size: 1.2em;
+    opacity: 0.95;
+}
+
+.tabs {
+    display: flex;
+    background: var(--bg-color);
+    border-bottom: 2px solid var(--border-color);
+    overflow-x: auto;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+    border-bottom: 3px solid transparent;
+    min-width: 200px;
+}
+
+.tab-btn:hover {
+    background: rgba(45, 134, 89, 0.1);
+    color: var(--primary-color);
+}
+
+.tab-btn.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+    background: white;
+}
+
+.tab-content {
+    display: none;
+    padding: 40px;
+    animation: fadeIn 0.3s ease;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h2 {
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    font-size: 2em;
+    border-bottom: 3px solid var(--accent-color);
+    padding-bottom: 10px;
+}
+
+h3 {
+    color: var(--secondary-color);
+    margin: 20px 0 15px 0;
+    font-size: 1.5em;
+}
+
+h4 {
+    color: var(--text-color);
+    margin: 15px 0 10px 0;
+    font-size: 1.2em;
+}
+
+/* Form Controls */
+.form-control {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1em;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(45, 134, 89, 0.1);
+}
+
+.input-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.input-group .form-control {
+    flex: 1;
+    min-width: 200px;
+}
+
+/* Buttons */
+.btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #5a6268;
+    transform: translateY(-2px);
+}
+
+.btn-success {
+    background: var(--success-color);
+    color: white;
+}
+
+.btn-success:hover {
+    background: #218838;
+    transform: translateY(-2px);
+}
+
+.btn-danger {
+    background: var(--danger-color);
+    color: white;
+    padding: 8px 16px;
+    font-size: 0.9em;
+}
+
+.btn-danger:hover {
+    background: #c82333;
+}
+
+/* Calculator Grid */
+.calculator-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+@media (max-width: 968px) {
+    .calculator-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.ingredient-inputs {
+    background: var(--bg-color);
+    padding: 25px;
+    border-radius: 12px;
+}
+
+.recipe-list {
+    margin: 20px 0;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.recipe-item {
+    background: white;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+}
+
+.recipe-item:hover {
+    transform: translateX(5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.recipe-item-info {
+    flex: 1;
+}
+
+.recipe-item-name {
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.recipe-item-details {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.recipe-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.stat-label {
+    font-size: 0.9em;
+    opacity: 0.9;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.stat-value {
+    font-size: 1.8em;
+    font-weight: bold;
+}
+
+.nutrition-preview {
+    background: var(--bg-color);
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 20px;
+}
+
+.nutrition-preview-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+.nutrition-item {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: var(--shadow);
+}
+
+.nutrition-item-label {
+    font-size: 0.85em;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.nutrition-item-value {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+/* Ingredient Database */
+.search-bar {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.search-bar .form-control {
+    flex: 1;
+    min-width: 250px;
+}
+
+.ingredient-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.ingredient-card {
+    background: white;
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow);
+}
+
+.ingredient-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--primary-color);
+}
+
+.ingredient-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 15px;
+}
+
+.ingredient-name {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.ingredient-category {
+    background: var(--accent-color);
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8em;
+    text-transform: uppercase;
+}
+
+.ingredient-properties {
+    margin: 15px 0;
+}
+
+.property-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.property-row:last-child {
+    border-bottom: none;
+}
+
+.property-label {
+    font-weight: 600;
+    color: #666;
+}
+
+.property-value {
+    color: var(--text-color);
+}
+
+.ingredient-description {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 2px solid var(--border-color);
+    color: #666;
+    font-size: 0.95em;
+    line-height: 1.6;
+}
+
+/* Nutrition Analyzer */
+.analyzer-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+@media (max-width: 968px) {
+    .analyzer-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.nutrition-input {
+    background: var(--bg-color);
+    padding: 25px;
+    border-radius: 12px;
+}
+
+.nutrition-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-row label {
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.nutrition-results {
+    background: var(--bg-color);
+    padding: 25px;
+    border-radius: 12px;
+}
+
+.analysis-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.analysis-item {
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-color);
+    background: var(--bg-color);
+}
+
+.analysis-item-label {
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.analysis-item-value {
+    font-size: 1.2em;
+    color: var(--text-color);
+}
+
+.analysis-recommendation {
+    margin-top: 15px;
+    padding: 15px;
+    background: #e7f5e7;
+    border-radius: 8px;
+    border-left: 4px solid var(--success-color);
+}
+
+.analysis-warning {
+    margin-top: 15px;
+    padding: 15px;
+    background: #fff3cd;
+    border-radius: 8px;
+    border-left: 4px solid var(--warning-color);
+}
+
+/* Research Section */
+.research-content {
+    max-width: 1000px;
+}
+
+.research-section {
+    margin-bottom: 40px;
+}
+
+.research-card {
+    background: white;
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+}
+
+.research-card:hover {
+    box-shadow: var(--shadow-hover);
+    border-color: var(--accent-color);
+}
+
+.research-card h4 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 1.3em;
+}
+
+.research-card p {
+    margin-bottom: 10px;
+    line-height: 1.8;
+}
+
+.research-card ul,
+.research-card ol {
+    margin: 15px 0 15px 25px;
+    line-height: 1.8;
+}
+
+.research-card li {
+    margin-bottom: 8px;
+}
+
+.research-card strong {
+    color: var(--primary-color);
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.8em;
+    }
+
+    .subtitle {
+        font-size: 1em;
+    }
+
+    .tab-content {
+        padding: 20px;
+    }
+
+    .tabs {
+        flex-direction: column;
+    }
+
+    .tab-btn {
+        min-width: 100%;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Loading and Empty States */
+.empty-state {
+    text-align: center;
+    padding: 40px;
+    color: #999;
+}
+
+.empty-state-icon {
+    font-size: 4em;
+    margin-bottom: 20px;
+    opacity: 0.5;
+}
+
+/* Success Messages */
+.success-message {
+    background: #d4edda;
+    color: #155724;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 15px 0;
+    border-left: 4px solid var(--success-color);
+}
+
