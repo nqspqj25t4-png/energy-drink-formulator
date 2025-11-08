@@ -27,7 +27,7 @@ A comprehensive web application for creating the world's healthiest plant-based 
 
 ### 3. Nutrition Analyzer
 - Input nutrition data for any recipe
-- Get detailed analysis including:
+- Get detailed analysis,including:
   - Per 100ml breakdown
   - Health assessments
   - Recommendations for optimization
